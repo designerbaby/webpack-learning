@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <title>起步</title>
+    </head>
+    <body>
+        <div id="app">
+            <base-checkbox v-model="value"></base-checkbox>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+
+            Vue.component('base-checkbox', {
+                    model: {
+                    prop: 'checked',
+                    event: 'change'
+                },
+                methods: {
+                    changeSomething (event) {
+                        console.log('changeSomething')
+                        this.$emit('change', event.target.checked)
+                    }
+                },
+                props: ['checked', 'value'],
+                template: `<input type="checkbox" v-bind:checked="checked" v-on:change="changeSomething">`
+            })
+            new Vue({
+                el: '#app',
+                data () {
+                    return {
+                        value: false
+                    }
+                },
+                watch: {
+                    value (newValue) {
+                        console.log('newValue:', newValue)
+                    }
+                },
+                methods: {
+                    dochangehandle (value) {
+                        console.log('dochangehandle value:', value)
+                    }
+                }
+            })
+        </script>
+       
+    </body>
+</html>
