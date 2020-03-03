@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>起步</title>
+    <!-- <script src="https://unpkg.com/lodash@4.16.6"></script> -->
+  </head>
+  <body>
+    <div id="app">
+      <p>current number is {{number}}</p>
+      <p>number + 10 is {{number+10}}</p>
+      <p>number is {{oddOrEvent}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            number: r
+          };
+        },
+        computed: {
+          oddOrEvent() {
+            return this.number % 2 === 0 ? "even" : "odd";
+          }
+        },
+        created() {
+          setInterval(() => {
+            this.number += 1;
+          }, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>
