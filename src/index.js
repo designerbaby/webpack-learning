@@ -10,4 +10,3 @@ img.classList.add(style.avatar)
 
 const root = document.getElementById('root')
 root.append(img)
-root.innerHTML = '<div>abc</div>'
