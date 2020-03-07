@@ -1,12 +1,13 @@
-import _ from 'loadsh'
-function component() {
-    var element = document.createElement('div');
 
-    // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+import avatar from './avatar.jpg'
+import style from './index.scss'
+import createAvatar from './createAvatar.js'
 
-    return element;
-}
+createAvatar()
+const img = new Image()
+img.src = avatar
+img.classList.add(style.avatar)
 
-document.body.appendChild(component());
-
+const root = document.getElementById('root')
+root.append(img)
+root.innerHTML = '<div>abc</div>'
