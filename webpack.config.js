@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack')
 
 module.exports = {
     mode: 'development',
@@ -12,9 +13,8 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 9000,
-        proxy: {
-            '/api': 'http://localhost:3000'
-        }
+        hot: true,
+        hotOnly: true
     },
     output: {
         filename: '[name].js',
@@ -22,6 +22,24 @@ module.exports = {
     },
     module: {
         rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
+            // options: {
+            //     // presets: [['@babel/preset-env', {
+            //     //     targets: {
+            //     //         chrome: '67'
+            //     //     },
+            //     //     useBuiltIns: 'usage'
+            //     // }]]
+            //     plugins: [['@babel/plugin-transform-runtime', {
+            //         'corejs': 2,
+            //         'helpers': true,
+            //         'regenerator': true,
+            //         'useESModules': false
+            //     }]]
+            // }
+        }, {
             test: /\.(jpg|png|gif)$/,
             use: {
                 loader: 'url-loader',
@@ -64,13 +82,25 @@ module.exports = {
                     }
                 }
             }]
+        }, {
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader',
+                'scss-loader',
+                'postcss-loader'
+            ]
         }]
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: 'src/index.html'
-    }), new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: [
-            path.resolve(__dirname, 'dist')
-        ]
-    })]
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'src/index.html'
+        }),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                path.resolve(__dirname, 'dist')
+            ]
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ]
 }

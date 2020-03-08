@@ -1,13 +1,12 @@
+import '@babel/polyfill'
 
-import avatar from './avatar.jpg'
-import style from './index.scss'
-import createAvatar from './createAvatar.js'
+import React, { Component } from 'react';
+import ReactDom from 'react-dom'
 
-createAvatar()
-const img = new Image()
-img.src = avatar
-img.classList.add(style.avatar)
+class App extends Component {
+  render() {
+    return <div>Hello world!</div>
+  }
+}
 
-const root = document.getElementById('root')
-root.append(img)
-console.log('aaa2222')
+ReactDom.render(<App />, document.getElementById('root'))
