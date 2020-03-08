@@ -4,11 +4,20 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
+    devtool: 'cheap-module-eval-source-map',
     entry: {
         main: './src/index.js',
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 9000,
+        proxy: {
+            '/api': 'http://localhost:3000'
+        }
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
     module: {

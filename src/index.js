@@ -10,3 +10,4 @@ img.classList.add(style.avatar)
 
 const root = document.getElementById('root')
 root.append(img)
+console.log('aaa2222')
