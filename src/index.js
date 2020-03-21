@@ -34,4 +34,16 @@
 // console.log('hello world1111')
 // console.log('body', $('body'))
 
-console.log('this === window:', this === window)
+// console.log('this === window:', this === window)
+console.log('hello janna')
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(registration => {
+        console.log('service-worker registed')
+      }).catch(error => {
+        console.log('service-worker register error')
+      })
+  })
+}

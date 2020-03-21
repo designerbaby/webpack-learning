@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack')
+// const webpack = require('webpack')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const merge = require('webpack-merge')
 const prodConfig = require('./webpack.prod')
@@ -15,12 +15,9 @@ const commonConfig = {
     rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [{
-            loader: 'babel-loader'
-        },  {
-            loader: 'imports-loader?this=>window'
-        }]
-        
+        // use: [{
+        //     loader: 'babel-loader'
+        // }]
         // options: {
         //     // presets: [['@babel/preset-env', {
         //     //     targets: {
@@ -95,11 +92,11 @@ const commonConfig = {
     new CleanWebpackPlugin({
         root: path.resolve(__dirname, '../')
     }),
-    new webpack.ProvidePlugin({
-        $: 'jquery',
-        _: "loadsh",
-        _join: ['loadsh', 'join'] // 代表loadsh里面的join方法。
-    })
+    // new webpack.ProvidePlugin({
+    //     $: 'jquery',
+    //     _: "loadsh",
+    //     _join: ['loadsh', 'join'] // 代表loadsh里面的join方法。
+    // })
     // new BundleAnalyzerPlugin()
   ],
   optimization: {
